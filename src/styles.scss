@@ -42,8 +42,11 @@
 
 .card {
   cursor: pointer;
+  border-radius: 15px;
 }
-
+.card-title {
+  font-size: 2rem;
+}
 .bg-normal {
   background-color: #a8a77a;
   color: #fff;
@@ -140,5 +143,12 @@
   color: #fff;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+  background-color: #e8e8e8;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
