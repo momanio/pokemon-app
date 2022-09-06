@@ -34,7 +34,7 @@ export class PokemonService {
   }
 
   getNext(): Observable<any> {
-    const url = this.next === '' ? `${this.pokeUrl}?limit=100` : this.next;
+    const url = this.next === '' ? `${this.pokeUrl}?limit=50` : this.next;
     return this.http.get<any>(url);
   }
 

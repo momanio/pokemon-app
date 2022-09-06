@@ -1,7 +1,23 @@
-<div class="container my-5">
+<div class="container">
+  <div class="row">
+    <div class="form-group">
+      <input
+        type="text"
+        class="form-control"
+        name="searchTerm"
+        placeholder="Search by pokemon name"
+        [(ngModel)]="searchTerm"
+        (input)="search(searchTerm)"
+      />
+    </div>
+  </div>
+
   <div class="col-xl-8 offset-xl-2">
     <div class="row">
-      <div *ngFor="let pokemon of pokemons; let i = index" class="col-md-6">
+      <div
+        *ngFor="let pokemon of pokemons | searchFilter: searchTerm"
+        class="col-md-6"
+      >
         <mat-card
           class="card text-center mb-3 bg-{{ getType(pokemon) }}"
           [routerLink]="['/pokemon', pokemon.name]"
@@ -9,19 +25,25 @@
           <mat-card-title class="card-title">
             {{ pokemon.name | titlecase }}
           </mat-card-title>
-          <span
-            *ngFor="let type of pokemon.types"
-            class="badge border rounded-pill me-1 bg-{{ getType(pokemon) }}"
-          >
-            {{ type.type.name | titlecase }}
-          </span>
+
           <img
-            mat-card-image
-            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{
+            mat-card-lg-image
+            src="https://unpkg.com/pokeapi-sprites@2.0.2/sprites/pokemon/other/dream-world/{{
               pokemon.id
-            }}.png"
+            }}.svg"
             alt="..."
           />
+
+          <mat-card-footer>
+            <div class="">
+              <span
+                *ngFor="let type of pokemon.types"
+                class="badge border rounded-pill me-1 bg-{{ getType(pokemon) }}"
+              >
+                {{ type.type.name | titlecase }}
+              </span>
+            </div>
+          </mat-card-footer>
         </mat-card>
       </div>
     </div>

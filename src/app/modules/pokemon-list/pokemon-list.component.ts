@@ -10,6 +10,7 @@ import { PokemonService } from 'src/app/shared/services/pokemon.service';
 export class PokemonListComponent {
   loading: boolean = false;
   subscriptions: Subscription[] = [];
+  searchTerm: any;
 
   constructor(private pokemonService: PokemonService) {}
   get pokemons(): any[] {
@@ -23,11 +24,7 @@ export class PokemonListComponent {
       this.loadMore();
     }
   }
-  ngOnDestroy(): void {
-    this.subscriptions.forEach((subscription) =>
-      subscription ? subscription.unsubscribe() : 0
-    );
-  }
+
   loadMore(): void {
     this.loading = true;
     this.subscription = this.pokemonService.getNext().subscribe({
@@ -50,5 +47,15 @@ export class PokemonListComponent {
   }
   getType(pokemon: any): string {
     return this.pokemonService.getType(pokemon);
+  }
+
+  search(value: string): void {
+    this.pokemons.filter((val) => val.name.includes(value));
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((subscription) =>
+      subscription ? subscription.unsubscribe() : 0
+    );
   }
 }
