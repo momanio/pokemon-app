@@ -10,7 +10,7 @@ import { PokemonService } from 'src/app/shared/services/pokemon.service';
 export class PokemonListComponent {
   loading: boolean = false;
   subscriptions: Subscription[] = [];
-  searchTerm: any;
+  searchTerm: string = '';
 
   constructor(private pokemonService: PokemonService) {}
   get pokemons(): any[] {
